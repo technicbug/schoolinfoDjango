@@ -1,15 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>양일고등학교 지도</title>
-        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body>
         <header>
             <a href="main.html">
-                <img src="image/yangil logo.png" alt="양일고등학교">
+                <img src="{% static 'images/yangil logo.png' %}" alt="양일고등학교">
             </a>            
             <nav>
                 <ul>
@@ -36,33 +37,29 @@
 
             <ul id="list">
                 <li>
-                    <img src="image/본관.jpeg" alt="본관 1층">
+                    <img src="{% static 'images/본관.jpeg' %}" alt="본관 1층">
                     <p>본관</p>
                     <p>where</p>
                 </li>
                 <li>
-                    <img src="image/별관.jpeg" alt="본관 2층">
+                    <img src="{% static 'images/별관.jpeg' %}" alt="본관 2층">
                     <p>별관</p>
                     <p>where</p>
                 </li>
                 <li>
-                    <img src="image/정경관.jpeg" alt="본관 3층">
+                    <img src="{% static 'images/정경관.jpeg' %}" alt="본관 3층">
                     <p>정경관</p>
                     <p>where</p>
                 </li>
                 <li>
-                    <img src="image/다목적관.jpeg" alt="본관 4층">
+                    <img src="{% static 'images/다목적관.jpeg' %}" alt="본관 4층">
                     <p>다목적관</p>
-                    <p>where</p>
-                </li>
-                <li>
-                    <img src="image/prettyWomen.jpg" alt="본관 5층">
-                    <p>이쁜이들</p>
                     <p>where</p>
                 </li>
             </ul>
         </main>
-        <script src="./js/script.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+
         <footer>
             <p>2024 프로젝트 봉사활동</p>
         </footer>

@@ -7,11 +7,13 @@ def index(req):
     return render(req, 'main/index.html')
 
 def maps(req):
-    return render(req, 'maps/insdex.html')
+    return render(req, 'maps/index.html')
 
 
 def techers(req):
     teacherlist = Teachers.objects.all()
 
-    return render(req, 'techers/techers.html', {'techerlsit' : teacherlist})
+    return render(req, 'teachers/techers.html', {'techerlsit' : teacherlist})
 
+def science(req):
+    return render(req, 'science/science.html')

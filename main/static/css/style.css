@@ -1,112 +1,176 @@
+/* styles.css */
+
+/* 전체 페이지 스타일 */
 body {
     font-family: Arial, sans-serif;
+    background-color: #fff;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.login-form {
+/* 헤더 스타일 */
+header {
     background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.login-form h2 {
-    margin-top: 0;
+/* 로고 스타일 */
+header img {
+    width: 150px;
+    height: auto;
 }
 
-.login-form input {
+/* 네비게이션 스타일 */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+@media screen and (max-width : 750px) {
+
+    header img {
+        width: 100px;
+        height: auto;
+    }
+
+    nav li {
+        margin-right: 20px;
+    }
+    
+    nav a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        font-size: 70%;
+    }
+    
+}
+
+/* 푸터 스타일 */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.login-form button {
-    width: 100%;
-    padding: 10px;
     background-color: #333;
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    text-align: center;
+    padding: 10px;
 }
 
-.login-form button:hover {
-    background-color: #555;
-}
-
-.login-form p {
-    margin-top: 15px;
-}
-
-.login-form p a {
-    color: #333;
+/* 푸터 링크 스타일 */
+footer a {
+    color: #fff;
     text-decoration: none;
+    font-weight: bold;
 }
 
-.login-form p a:hover {
+/* 푸터 링크 호버 스타일 */
+footer a:hover {
     text-decoration: underline;
 }
 
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-li.login-button {
-    display: inline;
-    margin-right : 20px;
-    float: right;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-section {
-    padding: 50px 0;
-}
-
-section h2 {
-    margin-top: 0;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
+/* 메인 스타일 */
+main {
+    padding: 20px;
+    padding-bottom: 100px;
     text-align: center;
+    justify-content: center;
+}
+
+/* h1 스타일 */
+#search_h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 검색 입력란 스타일 */
+#search {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc; /* 테두리 스타일 */
+    border-radius: 5px; /* 둥근 테두리 */
+    margin-bottom: 15px;
+    /* margin-left: 3%;  */
+    width: 30%;
+}
+
+/* 검색 버튼 스타일 */
+#searchButton {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px; /* 둥근 테두리 */
+    width: 70px;
+} 
+
+/* 위치보기 버튼 스타일 */
+#infoButton {
+    background-color: #5ca8df;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px; /*둥근 테두리*/
+    width: 70px;
+} 
+
+ul#list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 두 개의 열로 설정 */
+    grid-gap: 20px; /* 아이템 간격 설정 */
+}
+
+/* 리스트 아이템 스타일 */
+ul#list li {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+
+}
+
+ul#list li img {
+    width: 80%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+ul#list h3 {
+    text-align: center;
+}
+
+ul#list li p {
+    margin: 5px 0;
+}
+
+ul#map img {
+    width: 80%;
+    margin-bottom: 15px;
+
 }
