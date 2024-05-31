@@ -574,18 +574,18 @@ function showList(val = '', clear = false){
         return 0;
     }
     if(val == ''){
-      list.innerHTML = '';
+        list.innerHTML = '';
 
-      const res = images.forEach((img) => {
-          const li = document.createElement('li');
-          li.innerHTML =`
-              <img src="image/${img.name}.jpeg" alt="${img.name}">
-              <p>${img.name}</p>
-          `
-          list.appendChild(li)
-      })
-      
-      detail('','','',true);
+        const res = images.forEach((img) => {
+            const li = document.createElement('li');
+            li.innerHTML =`
+                <img src="image/${img.name}.jpeg" alt="${img.name}">
+                <p>${img.name}</p>
+            `
+            list.appendChild(li)
+        })
+        
+        detail('','','',true);
         
 
     } else{
