@@ -15,7 +15,6 @@ class ClassRoom(models.Model):
 
     name = models.CharField(max_length=30)
     location = models.CharField(blank=True, max_length=30)
-    img = models.ImageField(blank= True, upload_to = 'images/map/')
-    map_img = models.ImageField(blank= True, upload_to = 'images/map/')
+    loc_num = models.CharField(blank=True, max_length=10)
     def __str__(self):
         return self.name

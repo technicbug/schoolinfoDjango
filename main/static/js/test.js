@@ -622,6 +622,7 @@ function showList(val = '', clear = false){
         }
         detail('','','',true)
     }
+    location.reload(true);
     
 }
 
