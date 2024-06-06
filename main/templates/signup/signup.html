@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>양일고등학교 지도</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <header>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/yangil logo.png' %}" alt="양일고등학교">
+            </a>            
+            <nav>
+                <ul>
+                    <li><a href="{% url 'maps' %}">지도</a></li>
+                    <li><a href="{% url 'teachers' %}">선생님 프로필</a></li>
+                    <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
+                    <li><a href="{% url 'maps' %}">전환 교육 시설</a></li>
+                    <li><a href="{% url 'login' %}">로그인</a></li>
+                </ul>
+            </nav>
+        </header>
+        <hr>
+
+        <main>
+            <div class="signup-container">
+                <h2>회원가입</h2>
+                <form action="{% url 'signup' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="email">이메일(학교에서 받은 email을 사용해주세요.)</label>
+                    <input type="email" id="email" name="email" required>
+                    <button type="button" id="check_Email">이메일 확인</button>
+                    
+                    <label for="student_id">학번</label>
+                    <input type="text" id="student_Num" name="student_Num" placeholder="ex)20323" required>
+                    
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" placeholder="ex)최연수" required>
+    
+                    <label for="password1">비밀번호</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <label for="password2">비밀번호 확인</label>
+                    <input type="password" id="check_password" name="check_password" required>
+    
+                    <button type="submit" id="signup_button">가입하기</button>
+                </form>
+                <p>이미 계정이 있으신가요? <a href="{% url 'login' %}">로그인</a></p>
+            </div>
+        </main>
+        <footer>
+            <p>2024 프로젝트 봉사활동</p>
+        </footer>
+    </body>
+</html>

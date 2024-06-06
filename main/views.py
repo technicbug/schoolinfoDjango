@@ -17,3 +17,9 @@ def teachers(req):
 
 def science(req):
     return render(req, 'science/science.html')
+
+def login(require):
+    return render(require, 'login/login.html')
+
+def signup(require):
+    return render(require, 'signup/signup.html')
