@@ -9,6 +9,10 @@ def index(req):
 def maps(req):
     return render(req, 'maps/index.html')
 
+def map_search(req):
+    if req.method == 'POST':
+        searched = req.POST['searched']
+        map_list = ClassRoom
 
 def teachers(req):
     teacherlist = Teacher.objects.all()

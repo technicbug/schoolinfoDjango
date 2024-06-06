@@ -6,7 +6,7 @@ class Teacher(models.Model):
     name = models.CharField(max_length=30)
     subject = models.CharField(max_length=30)
     location = models.CharField(max_length=30)
-    profile_img = models.ImageField(blank= True, upload_to = 'images/')
+    profile_img = models.ImageField(blank= True, upload_to = 'images/profile')
     introduce = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
