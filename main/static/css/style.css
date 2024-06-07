@@ -278,3 +278,54 @@ ul#map img {
     background-color: #faf548;
 }
 
+/* 선생님 카드 스타일 */
+.teachers-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개의 열 */
+    gap: 20px; /* 카드 사이의 간격 */
+    padding: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 열 */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr; /* 한 줄에 1개의 열 */
+    }
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 가운데 정렬 */
+    box-sizing: border-box;
+}
+
+.card img {
+    width: 120px; /* 더 큰 너비 */
+    height: auto; /* 비율 유지 */
+    margin-right: 20px; /* 오른쪽 여백 */
+}
+
+.card .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+.card h3 {
+    margin: 0; /* 기본 여백 제거 */
+    font-size: 1.2em;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #555;
+}
