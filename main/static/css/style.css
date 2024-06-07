@@ -364,3 +364,65 @@ ul#map img {
 .intro-container ul li {
     margin: 5px 0;
 }
+
+/* 메인 페이지 스타일 */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.widget {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    width: calc(33% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.widget:hover {
+    transform: translateY(-10px);
+}
+
+.widget h2 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.widget p {
+    line-height: 1.6;
+    color: #333;
+    margin: 10px 0;
+}
+
+.widget a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #0078D4;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.widget a:hover {
+    background-color: #005bb5;
+}
+
+@media screen and (max-width: 900px) {
+    .widget {
+        width: calc(50% - 40px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .widget {
+        width: 100%;
+    }
+}
