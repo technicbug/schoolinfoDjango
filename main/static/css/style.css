@@ -330,4 +330,37 @@ ul#map img {
     color: #555;
 }
 
-/* 과제연구 */
+/* 과학 중점, 전환 교육 */
+.intro-container {
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.intro-container h2 {
+    color: #0078D4;
+}
+
+.intro-container h3 {
+    color: #5ca8df;
+    margin-top: 20px;
+}
+
+.intro-container p {
+    line-height: 1.6;
+    color: #333;
+    margin: 10px 0;
+}
+
+.intro-container ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.intro-container ul li {
+    margin: 5px 0;
+}
