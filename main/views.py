@@ -12,7 +12,17 @@ def maps(req):
 def map_search(req):
     if req.method == 'POST':
         searched = req.POST['searched']
-        map_list = ClassRoom
+        searched = str(searched)
+        searched = searched.replace(' ', '')
+        searched = searched.replace('학년','-')
+        searched = searched.replace('반', '')
+        map_list1 = ClassRoom.objects.filter(name__contains=searched)
+        map_list2 = ClassRoom.objects.filter(location__contains=searched)
+        map_list = map_list1 + map_list2
+        return render(req,'maps/map_search.html' ,{'searched':searched, 'maplist':map_list})
+    
+    else:
+        return render(req,'maps/map_search.html', {})
 
 def teachers(req):
     teacherlist = Teacher.objects.all()

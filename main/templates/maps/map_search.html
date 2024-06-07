@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>양일고등학교 지도</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <header>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/yangil logo.png' %}" alt="양일고등학교">
+            </a>            
+            <nav>
+                <ul>
+                    <li><a href="{% url 'maps' %}">지도</a></li>
+                    <li><a href="{% url 'teachers' %}">선생님 프로필</a></li>
+                    <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
+                    <li><a href="{% url 'maps' %}">전환 교육 시설</a></li>
+                    <li><a href="{% url 'login' %}">로그인</a></li>
+                    
+                </ul>
+            </nav>
+        </header>
+        <hr>
+
+        <main>
+            <h1>위치 검색</h1>
+            <form class="d-flex" method="POST" action="{% url = 'map_search' %}">
+                {% craf_token %}
+                <input type="text" id="search" placeholder="원하는 장소를 입력하세요." onkeypress="search(event)" name="searched">
+                <button id="searchButton">검색</button>
+            </form>
+
+            <ul id="map">
+                <!-- <h2>별관 3층</h2>
+                <img src="image/map/2-4.png" alt="양일고등학교"> -->
+            </ul>
+
+            <ul id="list">
+                <li>
+                    <img src="{% static 'images/본관.jpeg' %}" alt="본관 1층">
+                    <p>본관</p>
+                </li>
+                <li>
+                    <img src="{% static 'images/별관.jpeg' %}" alt="본관 2층">
+                    <p>별관</p>
+                </li>
+                <li>
+                    <img src="{% static 'images/정경관.jpeg' %}" alt="본관 3층">
+                    <p>정경관</p>
+                </li>
+                <li>
+                    <img src="{% static 'images/다목적관.jpeg' %}" alt="본관 4층">
+                    <p>다목적관</p>
+                </li>
+            </ul>
+        </main>
+        <script src="{% static 'js/script.js' %}"></script>
+
+        <footer>
+            <p>2024 프로젝트 봉사활동</p>
+        </footer>
+    </body>
+</html>
