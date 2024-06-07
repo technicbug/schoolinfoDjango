@@ -218,7 +218,7 @@ ul#map img {
     background-color: #005bb5;
 }
 
-/* 회원가입 폼 스타일 */
+/* 회원가입 */
 .signup-container {
     max-width: 400px;
     margin: 0 auto;
@@ -253,7 +253,7 @@ ul#map img {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    width: 100%;
+    width: calc(50% - 11px);
     font-size: 16px;
     margin-bottom: 15px;
 }
@@ -262,21 +262,22 @@ ul#map img {
     background-color: #005bb5;
 }
 
+.email-input-container {
+    display: flex;
+}
+
 #check_Email {
-    background-color: #ffc123;
+    background-color: #0078D4;
     color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
-    font-size: 16px;
-    margin-bottom: 15px;
+    margin-left: 10px;
 }
 
 #check_Email:hover {
-    background-color: #faf548;
+    background-color: #005bb5;
 }
+
+
+
 
 /* 선생님 카드 스타일 */
 .teachers-container {
