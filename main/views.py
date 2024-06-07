@@ -23,3 +23,6 @@ def login(require):
 
 def signup(require):
     return render(require, 'signup/signup.html')
+
+def trans_edu(require):
+    return render(require, 'trans_edu/trans_edu.html')

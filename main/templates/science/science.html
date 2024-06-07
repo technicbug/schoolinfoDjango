@@ -19,28 +19,28 @@
                     <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
                     <li><a href="{% url 'trans_edu' %}">전환 교육 시설</a></li>
                     <li><a href="{% url 'login' %}">로그인</a></li>
+                    
                 </ul>
             </nav>
         </header>
         <hr>
 
         <main>
-            <div class="login-container">
-                <h2>로그인</h2>
-                <form action="{% url 'login' %}" method="POST">
-                    {% csrf_token %}
-                    <label for="username">아이디</label>
-                    <input type="text" id="username" name="username" placeholder="학교에서 받은 Email 혹은 학번을 입력해주세요." required>
-                    
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" placeholder="" required>
-                    
-                    <button type="submit" id="login_button">로그인</button>
-                </form>
-                <p>아직 계정이 없으신가요? <a href="{% url 'signup' %}">회원가입</a></p>
-
+            <div class="intro-container">
+                <h1>과학 과제 연구 소개</h1>
+        
+                <div class="intro-content">
+                    <h2>1. 과학중점학교 운영 취지</h2>
+                    <div class="sub-section">
+                        <h3>가. 미래 사회 발전을 선도할 우수 인재 양성의 기반 마련</h3>
+                        <p>일반계 고등학교 학생의 과학·수학 소양 및 이해 증진</p>
+                        <p>심화된 과학·수학 지식과 인문·예술적 소양을 겸비한 인재 양성</p>
+                        <p>다양한 체험활동과 프로그램을 통해 일반계 고등학교의 과학·수학 교육 선진화 모델 제시</p>
+                    </div>
+                </div>
             </div>
         </main>
+        
         <footer>
             <p>2024 프로젝트 봉사활동</p>
         </footer>
