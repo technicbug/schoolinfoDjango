@@ -655,7 +655,7 @@ function detail(name ='', loc='', locNum='', clear = false){
         mapimg.innerHTML = '';
         mapimg.innerHTML = `
             <h2>${name} | ${loc}</h2>
-            <img src="image/map/${locNum}.png" alt="사진은 추후 업로드 예정입니다">
+            <img src="{image/map/${locNum}.png}" alt="사진은 추후 업로드 예정입니다">
         `;
         showList('@@@@', true)
     }

@@ -12,12 +12,13 @@ def maps(req):
 def map_search(req):
     if req.method == 'POST':
         searched = req.POST['searched']
-        searched = str(searched)
-        searched = searched.replace(' ', '')
-        searched = searched.replace('학년','-')
-        searched = searched.replace('반', '')
-        map_list1 = ClassRoom.objects.filter(name__contains=searched)
-        map_list2 = ClassRoom.objects.filter(location__contains=searched)
+        searched_txt = str(searched)
+        searched_txt = searched.replace(' ', '')
+        searched_txt = searched.replace('학년','-')
+        searched_txt = searched.replace('반', '')
+        
+        map_list1 = ClassRoom.objects.filter(name__icontains=searched_txt)
+        map_list2 = ClassRoom.objects.filter(location__icontains=searched_txt)
         map_list = map_list1 + map_list2
         return render(req,'maps/map_search.html' ,{'searched':searched, 'maplist':map_list})
     

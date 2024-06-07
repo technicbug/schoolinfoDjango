@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 ) 
+AUTH_USER_MODEL = 'accounts.User'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
