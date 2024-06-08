@@ -568,82 +568,10 @@ const images = [
 
 const list = document.getElementById('list');
 
-function showList(val = '', clear = false){
-    if(clear){
-        list.innerHTML = '';
-        return 0;
-    }
-    if(val == ''){
-      list.innerHTML = '';
-
-      const res = images.forEach((img) => {
-          const li = document.createElement('li');
-          li.innerHTML =`
-              <img src="image/${img.name}.jpeg" alt="${img.name}">
-              <p>${img.name}</p>
-          `
-          list.appendChild(li)
-      })
-      
-      detail('','','',true);
-        
-
-    } else{
-        let ifdo = false;
-        list.innerHTML = '';
-        const res = maps.forEach(function(map) {
-
-            let search_val = val.replace(' ', '');
-            search_val = search_val.replace('학년', '-');
-            search_val = search_val.replace('반', '')
-
-            if(map.name.includes(search_val) || map.loc.includes(search_val)){
-                const li = document.createElement('li');
-                // const maparr = [map.id, map.name, map.loc, map.locNum]
-                // console.log(maparr)
-                li.innerHTML=`
-                    <p>${map.name}</p>
-                    <p>위치 : ${map.loc}</p>
-                    <button id="infoButton" onclick="detail('${map.name}', '${map.loc}', '${map.locNum}')">위치 보기</button>
-                `
-
-                list.appendChild(li);
-                if(ifdo==false){
-                    ifdo = true;
-                }
-            }
-
-        })  
-        if(ifdo==false && clear == false){
-            list.innerHTML = `<h3>"${val}" 에 대한 검색결과가 없습니다</h3>
-              <p>반 검색시 (학년)-(반) 으로 검색해 주세요. ex) 2학년 3반 (X), 2-3 (O)</p>
-            `
-
-        }
-        detail('','','',true)
-    }
-
-    location.reload(true);
-    
-}
-
-showList()
 
 const searchInput = document.getElementById('search');
 const searchBtn = document.getElementById('searchButton');
 
-searchBtn.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const val = searchInput.value;
-    showList(val);
-})
-
-function search(e){
-    if(e.keyCode == 13){
-        const val = searchInput.value;
-        showList(val);
-    }
-}
 
 
 function detail(name ='', loc='', locNum='', clear = false){
@@ -655,9 +583,14 @@ function detail(name ='', loc='', locNum='', clear = false){
         mapimg.innerHTML = '';
         mapimg.innerHTML = `
             <h2>${name} | ${loc}</h2>
-            <img src="{image/map/${locNum}.png}" alt="사진은 추후 업로드 예정입니다">
+            {% for img in img_list %}
+              {% if img.loc_num = '${locNum}' %}
+                <img src="{{img.image}}" alt="사진은 추후 업로드 예정입니다">
+
+              {% endif %}
+            {% endfor %}
+
         `;
-        showList('@@@@', true)
     }
 
 }

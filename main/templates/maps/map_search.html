@@ -27,9 +27,9 @@
 
         <main>
             <h1>위치 검색</h1>
-            <form class="d-flex" method="POST" action="{% url = 'map_search' %}">
-                {% craf_token %}
-                <input type="text" id="search" placeholder="원하는 장소를 입력하세요." onkeypress="search(event)" name="searched">
+            <form class="d-flex" method="POST" action="{% url 'map_search' %}">
+                {% csrf_token %}
+                <input type="text" id="search" placeholder="원하는 장소를 입력하세요." onkeypress="search(event)" name="searched" value="{{searched}}">
                 <button id="searchButton">검색</button>
             </form>
 
@@ -39,27 +39,38 @@
                 <img src="image/map/2-4.png" alt="양일고등학교"> -->
             </ul>
             {% if searched %}
-            
+                <ul id="list">
+                    {% for map in maplist %}
+                    <li>
+                        <p>{{map.name}}</p>
+                        <p>위치 : {{map.location}}</p>
+                        <button id="infoButton" onclick="detail('{{map.name}}', '{{map.location}}', '{{map.loc_num}}')">위치 보기</button>
+                    </li>
+                    {% endfor %}
+                </ul>
 
-            <ul id="list">
-                
-                <li>
-                    <img src="{% static 'images/본관.jpeg' %}" alt="본관 1층">
-                    <p>본관</p>
-                </li>
-                <li>
-                    <img src="{% static 'images/별관.jpeg' %}" alt="본관 2층">
-                    <p>별관</p>
-                </li>
-                <li>
-                    <img src="{% static 'images/정경관.jpeg' %}" alt="본관 3층">
-                    <p>정경관</p>
-                </li>
-                <li>
-                    <img src="{% static 'images/다목적관.jpeg' %}" alt="본관 4층">
-                    <p>다목적관</p>
-                </li>
-            </ul>
+            {% else %}
+
+                <ul id="list">
+                    
+                    <li>
+                        <img src="{% static 'images/본관.jpeg' %}" alt="본관 1층">
+                        <p>본관</p>
+                    </li>
+                    <li>
+                        <img src="{% static 'images/별관.jpeg' %}" alt="본관 2층">
+                        <p>별관</p>
+                    </li>
+                    <li>
+                        <img src="{% static 'images/정경관.jpeg' %}" alt="본관 3층">
+                        <p>정경관</p>
+                    </li>
+                    <li>
+                        <img src="{% static 'images/다목적관.jpeg' %}" alt="본관 4층">
+                        <p>다목적관</p>
+                    </li>
+                </ul>
+            {% endif %}
         </main>
         <script src="{% static 'js/script.js' %}"></script>
 

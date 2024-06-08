@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Teacher, ClassRoom
+from .models import Teacher, ClassRoom, Image
 
 # Create your views here.
 def index(req):
@@ -13,14 +13,22 @@ def map_search(req):
     if req.method == 'POST':
         searched = req.POST['searched']
         searched_txt = str(searched)
-        searched_txt = searched.replace(' ', '')
-        searched_txt = searched.replace('학년','-')
-        searched_txt = searched.replace('반', '')
+        searched_txt = searched_txt.replace(' ', '')
+        searched_txt = searched_txt.replace('학년','-')
+        searched_txt = searched_txt.replace('반', '')
+
+        map_list1 = ClassRoom.objects.filter(name__contains=searched_txt)
+        map_list2 = ClassRoom.objects.filter(location__contains=searched_txt)
         
-        map_list1 = ClassRoom.objects.filter(name__icontains=searched_txt)
-        map_list2 = ClassRoom.objects.filter(location__icontains=searched_txt)
-        map_list = map_list1 + map_list2
-        return render(req,'maps/map_search.html' ,{'searched':searched, 'maplist':map_list})
+        map_list = map_list1 | map_list2
+        print(searched_txt)
+        print(map_list1)
+        
+        images = []
+        for m in map_list:
+            pass
+
+        return render(req,'maps/map_search.html' ,{'searched':searched, 'maplist':map_list, 'img':images})
     
     else:
         return render(req,'maps/map_search.html', {})

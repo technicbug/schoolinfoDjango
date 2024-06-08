@@ -27,8 +27,8 @@
 
         <main>
             <h1>위치 검색</h1>
-            <form class="d-flex" method="POST" action="{% url = 'search' %}">
-                {% craf_token %}
+            <form class="d-flex" method="POST" action="{% url 'map_search' %}">
+                {% csrf_token %}
                 <input type="text" id="search" placeholder="원하는 장소를 입력하세요." onkeypress="search(event)" name="searched">
                 <button id="searchButton">검색</button>
             </form>
