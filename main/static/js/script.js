@@ -573,6 +573,25 @@ const searchInput = document.getElementById('search');
 const searchBtn = document.getElementById('searchButton');
 
 
+async function loadImages(loc_num) {
+  const response = await fetch(`/api/images/?loc_num=${loc_num}`);
+  if (response.ok) {
+      const images = await response.json();
+
+      const container = document.getElementById('image-container');
+      container.innerHTML = '';  // Clear previous images
+
+      images.forEach(image => {
+          const imgElement = document.createElement('img');
+          imgElement.src = image.image;
+          imgElement.alt = image.description;
+          container.appendChild(imgElement);
+      });
+  } else {
+      console.error('Failed to load images:', response.statusText);
+  }
+}
+
 
 function detail(name ='', loc='', locNum='', clear = false){
     
@@ -584,10 +603,11 @@ function detail(name ='', loc='', locNum='', clear = false){
         mapimg.innerHTML = `
             <h2>${name} | ${loc}</h2>
             
-            <img src="{{images.${locNum}.image}}" alt="사진은 추후 업로드 예정입니다">
+            <div id="image-container"></div>
 
 
         `;
+        loadImages(locNum)
     }
 
 }

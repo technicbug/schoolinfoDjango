@@ -1,6 +1,15 @@
 from django.shortcuts import render
-
+from rest_framework import viewsets
+from .serializers import ImageModelSerializer
 from .models import Teacher, ClassRoom, Image
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import ImageModelFilter
+
+class ImageModelViewSet(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageModelSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ImageModelFilter
 
 # Create your views here.
 def index(req):
@@ -22,12 +31,7 @@ def map_search(req):
         map_list2 = ClassRoom.objects.filter(location__icontains=searched_txt)
         map_list = map_list1 | map_list2
         print(map_list)
-        images = []
-        for maps in map_list:
-            sel = maps.loc_num
-            sel = str(sel)
-            print(sel)
-            # images.append(Image.objects.get(loc_num=sel))
+        images = Image.objects.all()
         
         return render(req,'maps/map_search.html' ,{'searched':searched, 'map_list':map_list, 'images':images})
     
