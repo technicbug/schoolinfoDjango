@@ -13,22 +13,22 @@ def map_search(req):
     if req.method == 'POST':
         searched = req.POST['searched']
         searched_txt = str(searched)
-        searched_txt = searched_txt.replace(' ', '')
+        searched_txt = searched.replace(' ', '')
         searched_txt = searched_txt.replace('학년','-')
         searched_txt = searched_txt.replace('반', '')
-
-        map_list1 = ClassRoom.objects.filter(name__contains=searched_txt)
-        map_list2 = ClassRoom.objects.filter(location__contains=searched_txt)
-        
-        map_list = map_list1 | map_list2
         print(searched_txt)
-        print(map_list1)
         
+        map_list1 = ClassRoom.objects.filter(name__icontains=searched_txt)
+        map_list2 = ClassRoom.objects.filter(location__icontains=searched_txt)
+        map_list = map_list1 | map_list2
+        print(map_list)
         images = []
-        for m in map_list:
-            pass
-
-        return render(req,'maps/map_search.html' ,{'searched':searched, 'maplist':map_list, 'img':images})
+        for maps in map_list:
+            sel = maps.loc_num
+            sel = str(sel)
+            images.append(Image.objects.get(loc_num=sel))
+        
+        return render(req,'maps/map_search.html' ,{'searched':searched, 'map_list':map_list, 'images':images})
     
     else:
         return render(req,'maps/map_search.html', {})

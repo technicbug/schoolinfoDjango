@@ -583,12 +583,9 @@ function detail(name ='', loc='', locNum='', clear = false){
         mapimg.innerHTML = '';
         mapimg.innerHTML = `
             <h2>${name} | ${loc}</h2>
-            {% for img in img_list %}
-              {% if img.loc_num = '${locNum}' %}
-                <img src="{{img.image}}" alt="사진은 추후 업로드 예정입니다">
+            
+            <img src="{{images.${locNum}.image}}" alt="사진은 추후 업로드 예정입니다">
 
-              {% endif %}
-            {% endfor %}
 
         `;
     }

@@ -44,7 +44,7 @@
                     <li>
                         <p>{{map.name}}</p>
                         <p>위치 : {{map.location}}</p>
-                        <button id="infoButton" onclick="detail('{{map.name}}', '{{map.location}}', '{{map.loc_num}}')">위치 보기</button>
+                        <button id="infoButton" onclick="detail('{{map.name}}', '{{map.location}}', '{{forloop.counter0}}')">위치 보기</button>
                     </li>
                     {% endfor %}
                 </ul>
