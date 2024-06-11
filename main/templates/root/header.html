@@ -1,0 +1,15 @@
+{% load static %}
+<header>
+    <a href="{% url 'index' %}">
+        <img src="{% static 'images/yangil logo.png' %}" alt="양일고등학교">
+    </a>            
+    <nav>
+        <ul>
+            <li><a href="{% url 'maps' %}">지도</a></li>
+            <li><a href="{% url 'teachers' %}">선생님 프로필</a></li>
+            <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
+            <li><a href="{% url 'trans_edu' %}">전환 교육 시설</a></li>
+            <li><a href="{% url 'login' %}">로그인</a></li>
+        </ul>
+    </nav>
+</header>

@@ -8,13 +8,25 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     </head>
     <body>
-        {% include 'root/header.html' %}
+        <header>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/yangil logo.png' %}" alt="양일고등학교">
+            </a>            
+            <nav>
+                <ul>
+                    <li><a href="{% url 'maps' %}">지도</a></li>
+                    <li><a href="{% url 'teachers' %}">선생님 프로필</a></li>
+                    <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
+                    <li><a href="{% url 'trans_edu' %}">전환 교육 시설</a></li>
+                </ul>
+            </nav>
+        </header>
         <hr>
 
         <main>
             <div class="login-container">
                 <h2>로그인</h2>
-                <form action="{% url 'accounts:login' %}" method="POST">
+                <form action="{% url 'login' %}" method="POST">
                     {% csrf_token %}
                     <label for="username">아이디</label>
                     <input type="text" id="username" name="username" placeholder="학교에서 받은 Email 혹은 학번을 입력해주세요." required>

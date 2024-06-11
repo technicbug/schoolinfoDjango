@@ -26,7 +26,8 @@ def map_search(req):
         for maps in map_list:
             sel = maps.loc_num
             sel = str(sel)
-            images.append(Image.objects.get(loc_num=sel))
+            print(sel)
+            # images.append(Image.objects.get(loc_num=sel))
         
         return render(req,'maps/map_search.html' ,{'searched':searched, 'map_list':map_list, 'images':images})
     
