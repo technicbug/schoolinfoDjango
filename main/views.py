@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import ImageModelSerializer
-from .models import Teacher, ClassRoom, Image
+from .models import Image, ClassRoom, Teacher
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ImageModelFilter
 
@@ -10,6 +10,7 @@ class ImageModelViewSet(viewsets.ModelViewSet):
     serializer_class = ImageModelSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = ImageModelFilter
+
 
 # Create your views here.
 def index(req):
