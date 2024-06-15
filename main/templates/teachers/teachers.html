@@ -13,48 +13,23 @@
 
         <main>
             <h1>선생님 검색</h1>
-            <input type="text" id="search" placeholder="원하는 선생님을 입력하세요." onkeypress="search(event)">
-            <button id="searchButton">검색</button>
+            <input type="text" id="search" placeholder="원하는 선생님을 입력하세요." onkeypress="if(event.key === 'Enter') searchTeachers()">
+            <button id="searchButton" onclick="searchTeachers()">검색</button>
 
-
-            <div class="teachers-container">
-                <div class="card">
-                    <img src="{% static 'images/teachers/default.jpg' %}" alt="Person 1">
-                    <div class="card-info">
-                        <h3>한기홍</h3>
-                        <p>협곡 선생님</p>
-                        <p>위치: 본교무실</p>
-                        <p>자기 소개: 개씹존나싸가지 없는 한기홍입니다.</p>
-                    </div>
-                </div>  
-                <div class="card">
-                    <img src="{% static 'images/teachers/default.jpg' %}" alt="Person 1">
-                    <div class="card-info">
-                        <h3>한기홍</h3>
-                        <p>협곡 선생님</p>
-                        <p>위치: 본교무실</p>
-                        <p>자기 소개: 개씹존나싸가지 없는 한기홍입니다.</p>
-                    </div>
-                </div>  
-                <div class="card">
-                    <img src="{% static 'images/teachers/default.jpg' %}" alt="Person 1">
-                    <div class="card-info">
-                        <h3>한기홍</h3>
-                        <p>협곡 선생님</p>
-                        <p>위치: 본교무실</p>
-                        <p>자기 소개: 개씹존나싸가지 없는 한기홍입니다.</p>
-                    </div>
-                </div>  
-                <div class="card">
-                    <img src="{% static 'images/teachers/default.jpg' %}" alt="Person 1">
-                    <div class="card-info">
-                        <h3>한기홍</h3>
-                        <p>협곡 선생님</p>
-                        <p>위치: 본교무실</p>
-                        <p>자기 소개: 개씹존나싸가지 없는 한기홍입니다.</p>
-                    </div>
-                </div>           
+            <div class="teachers-container" id="teachers-container">
+                {% for teacher in teacherlist %}
+                    <!-- <div class="card">
+                        <img src="{% if teacher.profile_img %}{{ teacher.profile_img.url }}{% else %}{% static 'images/teachers/default.jpg' %}{% endif %}" alt="{{ teacher.name }} 선생님 사진">
+                        <div class="card-info">
+                            <h3>{{ teacher.name }}</h3>
+                            <p>{{ teacher.subject }} 선생님</p>
+                            <p>위치: {{ teacher.location }}</p>
+                            <p>자기 소개: {{ teacher.introduce }}</p>
+                        </div>
+                    </div> -->
+                {% endfor %}
             </div>
         </main>
+        <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>

@@ -4,6 +4,7 @@ from .serializers import ImageModelSerializer
 from .models import Image, ClassRoom, Teacher
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ImageModelFilter
+from django.http import JsonResponse
 
 class ImageModelViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
@@ -43,6 +44,12 @@ def teachers(req):
     teacherlist = Teacher.objects.all()
 
     return render(req, 'teachers/teachers.html', {'techerlsit' : teacherlist})
+
+def search_teachers(req):
+    query = req.GET.get('q', '')
+    teachers = Teacher.objects.filter(name__icontains=query)
+    teacher_list = list(teachers.values('name', 'subject', 'location', 'profile_img', 'introduce'))
+    return JsonResponse(teacher_list, safe=False)
 
 def science(req):
     return render(req, 'science/science.html')
