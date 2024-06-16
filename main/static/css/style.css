@@ -101,6 +101,9 @@ main {
     border-radius: 5px; /* 둥근 테두리 */
     width: 70px;
 } 
+#searchButton:hover {
+    background-color: #005bb5;
+}
 
 /* 위치보기 버튼 스타일 */
 #infoButton {
@@ -427,4 +430,31 @@ ul#map img {
     width: 100%;
     height: auto;
     border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#map_detail {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: auto;
+} 
+
+#map_detail:hover {
+    background-color: #005bb5;
 }
