@@ -15,8 +15,6 @@ urlpatterns = [
     path('science/', science, name='science'),
     path('teachers/', teachers, name='teachers'),
     path('search_teachers/', search_teachers, name='search_teachers'),
-    path('login/', login, name='login'),
-    path('signup/', signup, name='signup'),
     path('trans_edu/', trans_edu, name='trans_edu'),
     path('getmap/', include(router.urls)),  # API URL 패턴 포함
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

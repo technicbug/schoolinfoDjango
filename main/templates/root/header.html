@@ -6,9 +6,19 @@
     <nav>
         <ul>
             <li><a href="{% url 'maps' %}">지도</a></li>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'teachers' %}">선생님 프로필</a></li>
+            {% endif %}
             <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
             <li><a href="{% url 'trans_edu' %}">기타 시설</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'accounts:logout_page' %}">{{user}}</a></li>
+
+            {% else %}
+                <li><a href="{% url 'accounts:login' %}">로그인</a></li>
+
+            {% endif %}
+
 
         </ul>
     </nav>

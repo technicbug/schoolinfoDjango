@@ -15,7 +15,6 @@
             <nav>
                 <ul>
                     <li><a href="{% url 'maps' %}">지도</a></li>
-                    <li><a href="{% url 'teachers' %}">선생님 프로필</a></li>
                     <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
                     <li><a href="{% url 'trans_edu' %}">전환 교육 시설</a></li>
                 </ul>
@@ -26,17 +25,17 @@
         <main>
             <div class="login-container">
                 <h2>로그인</h2>
-                <form action="{% url 'login' %}" method="POST">
+                <form method="POST">
                     {% csrf_token %}
-                    <label for="username">아이디</label>
-                    <input type="text" id="username" name="username" placeholder="학교에서 받은 Email 혹은 학번을 입력해주세요." required>
+                    <label for="email">아이디</label>
+                    <input type="text" id="email" name="email" placeholder="학교에서 받은 Email 혹은 학번을 입력해주세요." required>
                     
                     <label for="password">비밀번호</label>
                     <input type="password" id="password" name="password" placeholder="" required>
                     
                     <button type="submit" id="login_button">로그인</button>
                 </form>
-                <p>아직 계정이 없으신가요? <a href="{% url 'signup' %}">회원가입</a></p>
+                <p>아직 계정이 없으신가요? <a href="{% url 'accounts:signup' %}">회원가입</a></p>
 
             </div>
         </main>
