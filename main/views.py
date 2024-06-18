@@ -43,7 +43,7 @@ def map_search(req):
 def teachers(req):
     teacherlist = Teacher.objects.all()
 
-    return render(req, 'teachers/teachers.html', {'techerlsit' : teacherlist})
+    return render(req, 'teachers/teachers.html', {'techerlist' : teacherlist})
 
 def search_teachers(req):
     query = req.GET.get('q', '')

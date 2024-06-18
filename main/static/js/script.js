@@ -52,18 +52,17 @@ async function searchTeachers() {
 
 function displayTeachers(teachers) {
     const container = document.getElementById('teachers-container');
-    const defaultImgUrl = "{% static 'images/teachers/default.jpg' %}";
     container.innerHTML = '';
 
     if (teachers.length === 0) {
         container.innerHTML = '<p>검색 결과가 없습니다.</p>';
     } else {
         teachers.forEach(teacher => {
-            const imgUrl = teacher.profile_img || defaultImgUrl;
+            // const imgUrl = teacher.profile_img;
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${teacher.profile_img || '{% static "images/teachers/default.jpg" %}'}" alt="${teacher.name} 선생님 사진">
+                <img src="${teacher.profile_img}" alt="${teacher.name} 선생님 사진">
                 <div class="card-info">
                     <h3>${teacher.name}</h3>
                     <p>${teacher.subject} 선생님</p>
