@@ -12,7 +12,7 @@
             <li><a href="{% url 'science' %}">과학 중점 학교</a></li>
             <li><a href="{% url 'trans_edu' %}">기타 시설</a></li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'accounts:logout_page' %}">{{user}}</a></li>
+                <li><a href="{% url 'accounts:profile' %}">{{user}}</a></li>
 
             {% else %}
                 <li><a href="{% url 'accounts:login' %}">로그인</a></li>

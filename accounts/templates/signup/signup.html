@@ -6,30 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>양일고등학교 지도</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-        $(document).ready(function() {
-            $('#id_email').on('blur', function() {
-                var email = $(this).val();
-                if (email) {
-                    $.ajax({
-                        url: '{% url "accounts:check_email" %}',
-                        data: {
-                            'email': email
-                        },
-                        dataType: 'json',
-                        success: function(data) {
-                            if (data.is_taken) {
-                                $('#email-error').text('이 이메일은 이미 사용중입니다.');
-                            } else {
-                                $('#email-error').text('');
-                            }
-                        }
-                    });
-                }
-            });
-        });
-        </script>
+
+        
     </head>
     <body>
         <header>
@@ -51,27 +29,24 @@
                 <h2>회원가입</h2>
                 <form action="{% url 'accounts:signup' %}" method="POST">
                     {% csrf_token %}
-                    <!-- <label for="email">이메일(학교에서 받은 Email을 사용해주세요.)</label>
-                    <div class="email-input-container">
-                        <input type="email" id="email" name="email" required>
-                        <button type="button" id="check_Email" required>이메일 확인</button>
-                    </div>
-                    
-                    <label for="class_num">학번</label>
-                    <input type="text" id="class_num" name="class_num" placeholder="ex)20323" required>
-                    
-                    <label for="name">이름</label>
-                    <input type="text" id="name" name="name" placeholder="ex)최연수" required>
-    
-                    <label for="password1">비밀번호</label>
-                    <input type="password" id="password" name="password" required>
-                    
-                    <label for="password2">비밀번호 확인</label>
-                    <input type="password" id="check_password" name="check_password" required> -->
+
+
                     {{ form.as_p }}
     
                     <button type="submit" id="signup_button">가입하기</button>
                 </form>
+                {% if form.errors %}
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 <p>이미 계정이 있으신가요? <a href="{% url 'accounts:login' %}">로그인</a></p>
             </div>
         </main>

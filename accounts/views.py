@@ -1,89 +1,92 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.models import User
-from django.contrib import messages
-from .forms import SignUpForm
-from django.http import JsonResponse
-from .models import UserProfile
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import EmailMessage
 
+
+from .forms import CustomUserCreationForm, CustomUserLoginForm, ProfileUpdateForm
+from .models import CustomUser
+from .tokens import email_verification_token
 
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-           
-
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
+            user.is_active = False  # 이메일 인증 전까지 비활성화
             user.save()
-
-            name = request.POST.get('name')  # 사용자 이름 가져오기
-            class_num = request.POST.get('class_num')  # 클래스 번호 가져오기
-            email = request.POST.get('email')
-
-            UserProfile.objects.create(user=user, name=name, class_num=class_num, email=email)
-
-           
-            auth_login(request, user)
-            return redirect('index')
-        else:
-            print('Form is invalid')
-            print(form.errors)  # 폼의 오류 메시지를 출력
+            send_verification_email(request, user)
+            return render(request, 'signup/email_verification_sent.html')
     else:
-        form = SignUpForm()
-        print('here')
+        form = CustomUserCreationForm()
     return render(request, 'signup/signup.html', {'form': form})
 
-def login(request):
-    if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
-        try:
-            user = User.objects.get(email=email)
-            user = authenticate(request, username=user.email, password=password)
-            if user is not None:
-                auth_login(request, user)
-                return redirect('index')
-            else:
-                messages.error(request, 'Invalid credentials')
-        except User.DoesNotExist:
-            messages.error(request, 'Invalid credentials')
-    return render(request, 'login/login.html')
-
-def check_email(request):
-    email = request.GET.get('email', None)
-    data = {
-        'is_taken': User.objects.filter(email=email).exists()
-    }
-    return JsonResponse(data)
-
-@login_required
-def logout_page(request):
-    user_profile = None
-    if request.user.is_authenticated:
-        try:
-            user_profile = UserProfile.objects.get(user=request.user)
-        except UserProfile.DoesNotExist:
-
-            user_profile = None
-
-    return render(request, 'logout/logout.html', {
-        'user_profile': user_profile
+def send_verification_email(request, user):
+    current_site = get_current_site(request)
+    mail_subject = 'Activate your account.'
+    message = render_to_string('accounts/acc_activate_email.html', {
+        'user': user,
+        'domain': current_site.domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': email_verification_token.make_token(user),
     })
+    to_email = user.email
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    email.send()
 
-@login_required
-def edit_profile(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user_profile)
-        if form.is_valid():
-            form.save(request.user)
-            return redirect('accounts:logout_page')
+def activate(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = CustomUser.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
+        user = None
+    if user is not None and email_verification_token.check_token(user, token):
+        user.is_active = True
+        user.email_verified = True
+        user.save()
+        login(request, user)
+        return redirect('index')
     else:
-        form = UserProfileForm(instance=user_profile)
-    
-    return render(request, 'accounts/edit_profile.html', {
-        'form': form,
-        'email': request.user.email
-    })
+        return render(request, 'accounts/email_verification_invalid.html')
+
+def email_verification_sent(request):
+    return render(request, 'signup/email_verification_sent.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        form = CustomUserLoginForm(request, data=request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')  # 로그인 성공 후 리다이렉트할 경로
+    else:
+        form = CustomUserLoginForm()
+    return render(request, 'login/login.html', {'form': form})
+
+
+@login_required
+def profile_view(request):
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileUpdateForm(instance=request.user)
+    return render(request, 'profile/profile.html', {'form': form})
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('index')
+
+
+

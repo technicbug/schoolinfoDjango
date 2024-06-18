@@ -1,52 +1,58 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from .models import UserProfile
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
+from .models import CustomUser
+import re
 
-
-class SignUpForm(forms.ModelForm):
-    name = forms.CharField(max_length=100, label='이름', required=True)
-    class_num = forms.CharField(max_length=5, label='학번', required=True)
-    password = forms.CharField(widget=forms.PasswordInput, label='비밀번호', required=True)
-    password2 = forms.CharField(widget=forms.PasswordInput, label='비밀번호 재확인', required=True)
-
+class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = User
-        fields = ['email']
+        model = CustomUser
+        fields = ('email', 'name', 'class_num', 'password1', 'password2')
 
-    def clean_password2(self):
-        cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
-            raise forms.ValidationError('비밀번호가 일치하지 않습니다')
-        return cd['password2']
-    
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise ValidationError('이 이메일은 이미 사용중 입니다')
+        pattern = r'^yangil\.s\d{6}@ggh\.goe\.go\.kr$'
+        if not re.match(pattern, email):
+            raise forms.ValidationError('학교에서 지급된 이메일을 사용해야합니다')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError('이미 가입 완료된 이메일 입니다.')
         return email
 
-    def save(self, commit=True):
-        user = super(SignUpForm, self).save(commit=False)
-        user.username = self.cleaned_data['email']  # 이메일을 username으로 사용
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-        return user
-    
+class CustomUserLoginForm(AuthenticationForm):
+    username = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'autofocus': True}))
 
-class UserProfileForm(forms.ModelForm):
-    class_num = forms.CharField(max_length=5, required=True)
-    name = forms.CharField(max_length=100, required=True)
 
+class ProfileUpdateForm(forms.ModelForm):
     class Meta:
-        model = UserProfile
-        fields = ['class_num', 'name']
-    
-    def save(self, user, commit=True):
-        profile = super(UserProfileForm, self).save(commit=False)
-        profile.user = user
-        if commit:
-            profile.save()
-        user.save()
-        return profile
+        model = CustomUser
+        fields = ['name', 'class_num', 'password']
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['password'].required = False
+        self.fields['password'].widget = forms.PasswordInput()
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if password:
+            return password
+        else:
+            return self.instance.password
+        
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'name', 'class_num', 'password1', 'password2')
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        pattern = r'^yangil\.s\d{6}@ggh\.goe\.go\.kr$'
+        if not re.match(pattern, email):
+            raise forms.ValidationError('Email must start with yangil.s followed by 6 digits and end with @ggh.goe.go.kr')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError('This email is already registered.')
+        return email
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'name', 'class_num')

@@ -6,10 +6,11 @@ from django.contrib.auth import views as auth_views
 app_name = 'accounts'
 
 urlpatterns =[
-    path('login/', login, name='login'),
     path('signup/', signup, name='signup'),
-    path('check-email/', check_email, name='check_email'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('logout_page/', logout_page, name='logout_page'),  # 로그아웃 폼 페이지
+    path('login/', login_view, name='login'),
+    path('profile/', profile_view, name='profile'),
+    path('logout/', logout_view, name='logout'),
+    path('activate/<uidb64>/<token>/', activate, name='activate'),
+    path('email_verification_sent/', email_verification_sent, name='email_verification_sent'),
  ]
 
