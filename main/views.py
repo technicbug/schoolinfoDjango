@@ -6,6 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ImageModelFilter
 from django.http import JsonResponse
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 class ImageModelViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
@@ -47,11 +48,18 @@ def building_details(req):
     detail_list = list(details.values('name', 'location', 'loc_num'))
     return JsonResponse(detail_list, safe=False)
 
+def custom_page_not_found_view(request, exception):
+    return render(request, "error/404.html", {})
+
+
+@login_required
 def teachers(req):
     teacherlist = Teacher.objects.all()
 
     return render(req, 'teachers/teachers.html', {'techerlist' : teacherlist})
 
+
+@login_required
 def search_teachers(req):
     query = req.GET.get('q', '')
     teachers = Teacher.objects.filter(name__icontains=query)

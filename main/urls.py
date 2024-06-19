@@ -20,3 +20,5 @@ urlpatterns = [
     path('getmap/', include(router.urls)),  # API URL 패턴 포함
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+handler404 = 'main.views.custom_page_not_found_view' 
+

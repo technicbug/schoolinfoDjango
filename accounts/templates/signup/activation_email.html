@@ -5,8 +5,8 @@
 </head>
 <body>
     <p>{{ user.name }}님 안녕하세요,</p>
-    <p>회원가입을 환영합니다. 밑의 링크를 눌러 회원가입을 완료해주세요</p>
+    <p>회원가입을 환영합니다.하단의 링크를 눌러 회원가입을 완료해주세요</p>
     <p>- 2024 양일고 프로젝트 봉사활동 -</p>
-    <p><a href="http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}">Activate Account</a></p>
+    <p><a href="http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}">인증하기</a></p>
 </body>
 </html>

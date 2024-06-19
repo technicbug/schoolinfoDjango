@@ -47,9 +47,9 @@ class CustomUserCreationForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         pattern = r'^yangil\.s\d{6}@ggh\.goe\.go\.kr$'
         if not re.match(pattern, email):
-            raise forms.ValidationError('Email must start with yangil.s followed by 6 digits and end with @ggh.goe.go.kr')
+            raise forms.ValidationError('학교에서 지급된 이메일을 사용해야 합니다')
         if CustomUser.objects.filter(email=email).exists():
-            raise forms.ValidationError('This email is already registered.')
+            raise forms.ValidationError('이미 가입 완료된 이메일 입니다.')
         return email
 
 class CustomUserChangeForm(UserChangeForm):
