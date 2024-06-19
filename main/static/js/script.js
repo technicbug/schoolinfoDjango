@@ -26,20 +26,52 @@ async function loadImages(loc_num) {
   }
 }
 
-function detail(name ='', loc='', locNum='', clear = false){
+function detail(name = '', loc = '', locNum = '', clear = false) {
     const mapimg = document.getElementById('map');
-    if(clear == true){
-        mapimg.innerHTML = '';
-    } else{
-        mapimg.innerHTML = '';
-        mapimg.innerHTML = `
-            <h2>${name} | ${loc}</h2>
-            
-            <div id="image-container"></div> <!-- 여기에 이미지가 표시될 컨테이너 추가 -->
-        `;
-        loadImages(locNum);
+    if (clear == true) {
+      mapimg.innerHTML = '';
+    } else {
+      mapimg.innerHTML = '';
+      mapimg.innerHTML = `
+        <h2>${name} | ${loc}</h2>
+        <div id="image-container"></div> <!-- 여기에 이미지가 표시될 컨테이너 추가 -->
+      `;
+      loadImages(locNum);
     }
 }
+
+
+async function loadBuildingDetails(building) {
+    const response = await fetch(`/getmap/building_details/?building=${building}`);
+    if (response.ok) {
+        const details = await response.json();
+        console.log(details);  // 응답 데이터 확인을 위한 로그 출력
+
+        const list = document.getElementById('list');
+        list.innerHTML = '';  // 이전 내용 제거
+
+        details.forEach(detail => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <p>${detail.name}</p>
+                <p>위치 : ${detail.location}</p>
+                <button id="infoButton" onclick="detail('${detail.name}', '${detail.location}', '${detail.loc_num}')">위치 보기</button>
+            `;
+            list.appendChild(listItem);
+        });
+    } else {
+        console.error('Failed to load details:', response.statusText);
+    }
+}
+
+function viewBuildingDetails(building) {
+    const mapimg = document.getElementById('map');
+    mapimg.innerHTML = '';
+    mapimg.innerHTML = `<h2>${building}</h2>`;
+    loadBuildingDetails(building);
+}
+
+
 
 
 

@@ -12,6 +12,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('maps/', maps, name='maps'),
     path('map/search/', map_search, name='map_search'),
+    path('getmap/building_details/', building_details, name='building_details'),
     path('science/', science, name='science'),
     path('teachers/', teachers, name='teachers'),
     path('search_teachers/', search_teachers, name='search_teachers'),

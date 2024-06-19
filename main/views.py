@@ -39,6 +39,12 @@ def map_search(req):
     
     else:
         return render(req,'maps/map_search.html', {})
+    
+def building_details(req):
+    building = req.GET.get('building')
+    details = ClassRoom.objects.filter(location__icontains=building)
+    detail_list = list(details.values('name', 'location', 'loc_num'))
+    return JsonResponse(detail_list, safe=False)
 
 def teachers(req):
     teacherlist = Teacher.objects.all()

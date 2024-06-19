@@ -19,13 +19,9 @@
                 <button id="searchButton" type="submit">검색</button>
             </form>
 
-
-            <ul id="map">
-                <!-- <h2>별관 3층</h2>
-                <img src="image/map/2-4.png" alt="양일고등학교"> -->
-            </ul>
-            {% if searched %}
-                <ul id="list">
+            <ul id="map"></ul>
+            <ul id="list">
+                {% if searched %}
                     {% for map in map_list %}
                     <li>
                         <p>{{map.name}}</p>
@@ -33,36 +29,31 @@
                         <button id="infoButton" onclick="detail('{{map.name}}', '{{map.location}}', '{{map.loc_num}}')">위치 보기</button>
                     </li>
                     {% endfor %}
-                </ul>
-                <div id="image-container"></div>    <!-- 여기에 이미지가 표시될 컨테이너 추가 -->
-            {% else %}
-
-                <ul id="list">
-                    
+                {% else %}
                     <li>
                         <img src="{% static 'images/본관.jpeg' %}" alt="본관 1층">
                         <p>본관</p>
-                        <button id="map_detail">자세히 보기</button>
+                        <button id="map_detail" onclick="viewBuildingDetails('본관')">자세히 보기</button>
                     </li>
                     <li>
-                        <img src="{% static 'images/별관.jpeg' %}" alt="본관 2층">
+                        <img src="{% static 'images/별관.jpeg' %}" alt="별관 2층">
                         <p>별관</p>
-                        <button id="map_detail">자세히 보기</button>
+                        <button id="map_detail" onclick="viewBuildingDetails('별관')">자세히 보기</button>
                     </li>
                     <li>
-                        <img src="{% static 'images/정경관.jpeg' %}" alt="본관 3층">
+                        <img src="{% static 'images/정경관.jpeg' %}" alt="정경관 3층">
                         <p>정경관</p>
-                        <button id="map_detail">자세히 보기</button>
+                        <button id="map_detail" onclick="viewBuildingDetails('정경관')">자세히 보기</button>
                     </li>
                     <li>
-                        <img src="{% static 'images/다목적관.jpeg' %}" alt="본관 4층">
+                        <img src="{% static 'images/다목적관.jpeg' %}" alt="다목적관 4층">
                         <p>다목적관</p>
-                        <button id="map_detail">자세히 보기</button>
+                        <button id="map_detail" onclick="viewBuildingDetails('다목적관')">자세히 보기</button>
                     </li>
-                </ul>
-            {% endif %}
+                {% endif %}
+            </ul>
+            <div id="image-container"></div> <!-- 여기에 이미지가 표시될 컨테이너 추가 -->
         </main>
         <script src="{% static 'js/script.js' %}"></script>
-
     </body>
 </html>
