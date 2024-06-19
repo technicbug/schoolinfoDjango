@@ -5,6 +5,7 @@ from .models import Image, ClassRoom, Teacher
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import ImageModelFilter
 from django.http import JsonResponse
+from django.conf import settings
 
 class ImageModelViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
@@ -54,7 +55,16 @@ def teachers(req):
 def search_teachers(req):
     query = req.GET.get('q', '')
     teachers = Teacher.objects.filter(name__icontains=query)
-    teacher_list = list(teachers.values('name', 'subject', 'location', 'profile_img', 'introduce'))
+    teacher_list = []
+    for teacher in teachers:
+        profile_img_url = teacher.profile_img.url if teacher.profile_img else f'{settings.STATIC_URL}images/profile/default.jpg'
+        teacher_list.append({
+            'name': teacher.name,
+            'subject': teacher.subject,
+            'location': teacher.location,
+            'profile_img': profile_img_url,
+            'introduce': teacher.introduce,
+        })
     return JsonResponse(teacher_list, safe=False)
 
 def science(req):
