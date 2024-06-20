@@ -29,15 +29,17 @@ async function loadImages(loc_num) {
 function detail(name = '', loc = '', locNum = '', clear = false) {
     const mapimg = document.getElementById('map');
     if (clear == true) {
-      mapimg.innerHTML = '';
+        mapimg.innerHTML = '';
     } else {
-      mapimg.innerHTML = '';
-      mapimg.innerHTML = `
+        mapimg.innerHTML = '';
+        mapimg.innerHTML = `
         <h2>${name} | ${loc}</h2>
         <div id="image-container"></div> <!-- 여기에 이미지가 표시될 컨테이너 추가 -->
-      `;
+        `;
+        window.scrollTo({ top: 20, left:0 ,behavior: "smooth" }); 
       loadImages(locNum);
     }
+    
 }
 
 

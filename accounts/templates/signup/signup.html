@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>양일고등학교 지도</title>
+        <title>회원가입</title>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
         
@@ -35,18 +35,6 @@
     
                     <button type="submit" id="signup_button">가입하기</button>
                 </form>
-                {% if form.errors %}
-                    <ul>
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
                 <p>이미 계정이 있으신가요? <a href="{% url 'accounts:login' %}">로그인</a></p>
             </div>
         </main>
