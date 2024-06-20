@@ -1,0 +1,476 @@
+/* styles.css */
+
+/* 전체 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: #fff;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 로고 스타일 */
+header img {
+    width: 150px;
+    height: auto;
+}
+
+/* 네비게이션 스타일 */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-right: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 100%;
+}
+
+@media screen and (max-width : 750px) {
+
+    header img {
+        width: 100px;
+        height: auto;
+    }
+
+    nav li {
+        margin-right: 20px;
+    }
+    
+    nav a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        font-size: 70%;
+    }
+    
+}
+
+
+
+
+/* 메인 스타일 */
+main {
+    padding: 20px;
+    padding-bottom: 100px;
+    text-align: center;
+    justify-content: center;
+}
+
+/* h1 스타일 */
+#search_h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 검색 입력란 스타일 */
+#search {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc; /* 테두리 스타일 */
+    border-radius: 5px; /* 둥근 테두리 */
+    margin-bottom: 15px;
+    /* margin-left: 3%;  */
+    width: 30%;
+}
+
+/* 검색 버튼 스타일 */
+#searchButton {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px; /* 둥근 테두리 */
+    width: 70px;
+} 
+#searchButton:hover {
+    background-color: #005bb5;
+}
+
+/* 위치보기 버튼 스타일 */
+#infoButton {
+    background-color: #5ca8df;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px; /*둥근 테두리*/
+    width: 90px;
+} 
+
+ul#list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 두 개의 열로 설정 */
+    grid-gap: 20px; /* 아이템 간격 설정 */
+}
+
+/* 리스트 아이템 스타일 */
+ul#list li {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+
+}
+
+ul#list li img {
+    width: 80%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+ul#list h3 {
+    text-align: center;
+}
+
+ul#list li p {
+    margin: 5px 0;
+}
+
+ul#map img {
+    width: 80%;
+    margin-bottom: 15px;
+
+}
+
+/* 로그인 폼 스타일 */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-container input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login_button {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+#login_button:hover {
+    background-color: #005bb5;
+}
+
+/* 회원가입 */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.signup-container h2 {
+    margin-bottom: 20px;
+}
+
+.signup-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.signup-container input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup-container button {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: calc(50% - 11px);
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.signup-container button:hover {
+    background-color: #005bb5;
+}
+
+.email-input-container {
+    display: flex;
+}
+
+#check_Email {
+    background-color: #0078D4;
+    color: white;
+    margin-left: 10px;
+}
+
+#check_Email:hover {
+    background-color: #005bb5;
+}
+
+
+
+
+/* 선생님 카드 스타일 */
+.teachers-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개의 열 */
+    gap: 20px; /* 카드 사이의 간격 */
+    padding: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개의 열 */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card-container {
+        grid-template-columns: 1fr; /* 한 줄에 1개의 열 */
+    }
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 수직 가운데 정렬 */
+    box-sizing: border-box;
+}
+
+.card img {
+    width: 120px; /* 더 큰 너비 */
+    height: auto; /* 비율 유지 */
+    margin-right: 20px; /* 오른쪽 여백 */
+}
+
+.card .card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+.card h3 {
+    margin: 0; /* 기본 여백 제거 */
+    font-size: 1.2em;
+}
+
+.card p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* 과학 중점, 전환 교육 */
+.intro-container {
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.intro-container h3 {
+    margin-top: 20px;
+}
+
+.intro-container p {
+    line-height: 1.6;
+    color: #333;
+    margin: 10px 0;
+}
+
+.intro-container ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.intro-container ul li {
+    margin: 5px 0;
+}
+
+/* 메인 페이지 스타일 */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.widget {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    width: calc(33% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.widget:hover {
+    transform: translateY(-10px);
+}
+
+.widget h2 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.widget p {
+    line-height: 1.6;
+    color: #333;
+    margin: 10px 0;
+}
+
+.widget a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #0078D4;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.widget a:hover {
+    background-color: #005bb5;
+}
+
+@media screen and (max-width: 900px) {
+    .widget {
+        width: calc(50% - 40px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .widget {
+        width: 100%;
+    }
+}
+
+.widget-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.widget-container .widget {
+    margin: 0 20px;
+}
+
+.widget-container .image-widget {
+    flex: 2; /* 이미지 위젯을 더 크게 */
+}
+
+.widget-container .info-widget {
+    flex: 1; /* 만든이 정보 위젯을 더 작게 */
+    max-width: 300px; /* 적절한 최대 너비 설정 */
+    text-align: left; /* 글씨 좌측 정렬 */
+
+}
+
+.image-widget img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#map_detail {
+    background-color: #0078D4;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: auto;
+} 
+
+#map_detail:hover {
+    background-color: #005bb5;
+}
+
+.update_email {
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.update_email .email-label {
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    margin-right: 0px; /* 라벨 우측 여백 추가 */
+    font-weight: bold;
+}
+
+.update_email p {
+    margin: 0; /* 문단의 여백 제거 */
+    display: inline; /* 인라인 요소로 설정하여 줄바꿈 없이 텍스트 가운데 정렬 적용 */
+}
