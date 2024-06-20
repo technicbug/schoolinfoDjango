@@ -7,6 +7,10 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'name', 'class_num', 'password1', 'password2')
+        labels = {
+            'name': '이름',  # 원하는 레이블 내용으로 수정
+            'class_num': '학번',  # 원하는 레이블 내용으로 수정
+        }
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -18,7 +22,7 @@ class CustomUserCreationForm(UserCreationForm):
         return email
 
 class CustomUserLoginForm(AuthenticationForm):
-    username = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'autofocus': True}))
+    username = forms.EmailField(label='이메일', widget=forms.EmailInput(attrs={'autofocus': True}))
 
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -27,8 +31,11 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = ['name', 'class_num']
         widgets = {
             'name': forms.TextInput(attrs={'id': 'name', 'class': 'profile-update-form-control'}),
-            'class_num': forms.TextInput(attrs={'id': 'class_num', 'class': 'profile-update-form-control'}),
-            
+            'class_num': forms.TextInput(attrs={'id': 'class_num', 'class': 'profile-update-form-control'}),   
+        }
+        labels = {
+            'name': '이름',  # 원하는 레이블 내용으로 수정
+            'class_num': '학번',  # 원하는 레이블 내용으로 수정
         }
 
     def __init__(self, *args, **kwargs):
@@ -40,6 +47,11 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ('email', 'name', 'class_num', 'password1', 'password2')
+        labels = {
+            'email': '이메일',
+            'name': '이름',  # 원하는 레이블 내용으로 수정
+            'class_num': '학번',  # 원하는 레이블 내용으로 수정
+        }
 
     def clean_email(self):
         email = self.cleaned_data.get('email')

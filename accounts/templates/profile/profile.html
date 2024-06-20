@@ -14,7 +14,7 @@
     <div class="signup-container">
         <h2>프로필 수정</h2>
         <div class="update_email">
-            <label for="email">이메일: </label>
+            <span class="email-label">이메일: </span>
             <p>{{ user.email }}</p>
         </div>
         <form method="post">
@@ -22,7 +22,11 @@
             {{ form.as_p }}
             <button type="submit">저장</button>
         </form>
-        <a href="{% url 'accounts:logout' %}">로그아웃</a>
+        
+        <form action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">로그아웃</button>
+        </form>
         {% if form.errors %}
             <ul id="form-errors" class="profile-update-error-list">
                 {% for field in form %}

@@ -80,7 +80,7 @@ def profile_view(request):
         form = ProfileUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('accounts:profile')
+            return redirect('index')
     else:
         form = ProfileUpdateForm(instance=request.user)
     return render(request, 'profile/profile.html', {'form': form})
