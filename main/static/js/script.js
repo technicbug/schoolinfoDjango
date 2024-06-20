@@ -38,6 +38,7 @@ function detail(name = '', loc = '', locNum = '', clear = false) {
       `;
       loadImages(locNum);
     }
+    window.scrollTo(0,0);
 }
 
 
