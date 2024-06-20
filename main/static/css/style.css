@@ -458,3 +458,17 @@ ul#map img {
 #map_detail:hover {
     background-color: #005bb5;
 }
+
+
+.update_email {
+    display: flex;
+    align-items: center;
+}
+
+.update_email label {
+    margin-right: 10px;
+}
+
+.update_email p {
+    margin: 0;
+}

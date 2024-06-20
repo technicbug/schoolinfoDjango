@@ -1,28 +1,41 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>프로필 수정</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>프로필 수정</h2>
-    <p>이메일: {{ user.email }}</p>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">저장</button>
-    </form>
-    <a href="{% url 'accounts:logout' %}">로그아웃</a>
-    {% if form.errors %}
-        <ul>
-            {% for field in form %}
-                {% for error in field.errors %}
+    {% include 'root/header.html' %}
+    <hr>
+
+
+    <div class="signup-container">
+        <h2>프로필 수정</h2>
+        <div class="update_email">
+            <label for="email">이메일: </label>
+            <p>{{ user.email }}</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">저장</button>
+        </form>
+        <a href="{% url 'accounts:logout' %}">로그아웃</a>
+        {% if form.errors %}
+            <ul id="form-errors" class="profile-update-error-list">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}    
+                {% for error in form.non_field_errors %}
                     <li>{{ error }}</li>
                 {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+    
 </body>
 </html>

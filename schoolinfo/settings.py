@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'jango-insecure-$00rtby-04(1-#)60odj!$t$$#xapi&s@=1zlharcw+#o3(vq0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -70,7 +70,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 EMAIL_HOST = 'smtp.gmail.com' 		 # 메일 호스트 서버
 EMAIL_PORT = '587' 			 # 서버 포트
 EMAIL_HOST_USER = 'yangilinfoproject@gmail.com' 	 # 우리가 사용할 Gmail
-EMAIL_HOST_PASSWORD = ''		 # 우리가 사용할 Gmail p
+EMAIL_HOST_PASSWORD = 'ciwfwmuwsrmphdmo'		 # 우리가 사용할 Gmail p
 EMAIL_USE_TLS = True			 # TLS 보안 설정
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 

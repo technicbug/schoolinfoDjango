@@ -24,19 +24,17 @@ class CustomUserLoginForm(AuthenticationForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['name', 'class_num', 'password']
+        fields = ['name', 'class_num']
+        widgets = {
+            'name': forms.TextInput(attrs={'id': 'name', 'class': 'profile-update-form-control'}),
+            'class_num': forms.TextInput(attrs={'id': 'class_num', 'class': 'profile-update-form-control'}),
+            
+        }
 
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
-        self.fields['password'].required = False
-        self.fields['password'].widget = forms.PasswordInput()
+        
 
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        if password:
-            return password
-        else:
-            return self.instance.password
         
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
